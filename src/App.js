@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+ import {Navbar, NavbarBrand, Collapse, Nav, NavItem, NavLink} from 'reactstrap'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar color='light' light expand='md'>
+      <NavbarBrand> Minhas Séries</NavbarBrand>
+        <Collapse isOpen={true} navbar>
+          <Nav className='mlauto' navbar>
+            <NavItem >
+              <NavLink href='/'> Gêneros </NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   );
 }
