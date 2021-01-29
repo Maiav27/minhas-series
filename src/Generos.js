@@ -51,7 +51,7 @@ const Generos = () =>{
     return(
         <div className='container'>
         <h1> Generos</h1>
-      <Link to = '/generos/novo' className='btn btn-primary' >Novo Genêro</Link>
+      <Link to={'/generos/novo'} className='btn btn-primary' >Novo Genêro</Link>
         <table class="table table-dark">
             <thead>
                 <tr>

@@ -30,7 +30,7 @@ const save = () =>{
         <div className='form-group'>
            <label htmlFor='name'>Nome </label>
            <input id ='name' type='text' value={name} onChange={onChange}  className='form-control'  placeholder='Nome do Gênero' />
-           <button type='button' onClick={save} className='btn btn-primary'>Editar</button> s
+           <button type='button' onClick={save} className='btn btn-primary'>Editar</button> 
         </div>
      </form>
      </div>
