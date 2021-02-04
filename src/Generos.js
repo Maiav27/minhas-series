@@ -15,11 +15,13 @@ const Generos = () =>{
 
     const renderizaLinha = (record) => {
       return(
+
         <tr key={record.id}>
+
             <th>{record.id}</th>
             <td>{record.name}</td>
             <td><button type="button" className="btn btn-danger" onClick={ () => deleteGenero(record.id)}>Excluir</button>
-            <Link to={'/generos/' + record.id} className='btn btn-warning'>Editar</Link>
+            <Link to={'/generos/' + record.id} className='btn btn-warning' >Editar</Link>
             </td>
 
         </tr>
@@ -47,24 +49,24 @@ const Generos = () =>{
         )
     }
 
-   console.log(data)
     return(
         <div className='container'>
-        <h1> Generos</h1>
-      <Link to={'/generos/novo'} className='btn btn-primary' >Novo Genêro</Link>
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Nome</th>   
-                    <th>Ações</th>          
-                </tr>
-            </thead>
-            <tbody>
-               {data.map(renderizaLinha) }
-    
-            </tbody>
-         </table>
+
+            <h1> Generos</h1>
+            <Link to={'/generos/novo'} className='btn btn-primary' >Novo Genêro</Link>
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nome</th>   
+                        <th>Ações</th>          
+                    </tr>
+                </thead>
+                <tbody>
+                {data.map(renderizaLinha) }
+        
+                </tbody>
+            </table>
  
         </div>
         )

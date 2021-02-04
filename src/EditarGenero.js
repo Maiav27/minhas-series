@@ -5,7 +5,7 @@ import {Redirect} from 'react-router-dom'
 const EditarGenero = ({match}) => {
 const[name, setName] = useState('')
 const[sucess, setSucess] = useState(false)
-
+console.log(match)
 useEffect(()=>{
     axios.get('/api/genres/' + match.params.id)
     .then(res => setName(res.data.name))
