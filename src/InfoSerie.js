@@ -6,12 +6,15 @@ import {Badge} from 'reactstrap'
 function InfoSerie({match}) {
 
     const[sucess, setSucess] = useState(false)
-    const[form, setForm] = useState({})
+    const[form, setForm] = useState({
+        name : ''
+    })
     const[data, setData] = useState({})
     const[mode, setMode] = useState(false)
     const[text, setText] = useState('Editar')
     const[genres, setGenres] = useState([])
     const[genreId, setGenreId] = useState('')
+    
     useEffect(()=>{
       if(match.params.id){
         axios.get('/api/series/'+ match.params.id)
@@ -26,7 +29,9 @@ function InfoSerie({match}) {
     useEffect(()=>{
         axios.get('/api/genres').then(res =>{ setGenres(res.data.data)
         const genres = res.data.data
-       const encontrado= genres.find(value=> data.genre === value.name )  
+       const encontrado= genres.find( value=>   data.genre === value.name )  
+       
+       
        if(encontrado){
            setGenreId(encontrado.id)
        }
@@ -69,6 +74,7 @@ function InfoSerie({match}) {
 
     const seleciona = (value) => () => {
         setForm({...form, status : value})
+  
     }
 
     const save = () =>{
@@ -76,7 +82,7 @@ function InfoSerie({match}) {
         axios.put('/api/series/' + match.params.id , {
             ...form, genre_id : genreId
         }
-        ).then(res => {setSucess(res)})
+        ).then(res => setSucess(true))
     }
 
      if(sucess){
@@ -123,8 +129,8 @@ function InfoSerie({match}) {
        
             <div className='container'>
            
-                <h1>Nova Série</h1>
-               <pre>{JSON.stringify(form)}</pre>
+                <h1>Editar Série</h1>
+             
                 <form action="">
 
                     <div className='form-group'>
@@ -143,13 +149,13 @@ function InfoSerie({match}) {
                 </div>
                 <div class="form-group">
                     <label htmlFor="exampleFormControlSelect1">Gêneros</label>
-                    <select class="form-control" onChange={onChangeGenre} defaultValue={genreId}>
+                    <select className="form-control" onChange={onChangeGenre} defaultValue={genreId}>
                     {genres.map(genre => <option key={genre.id} value={genre.id} >{genre.name}</option>)}
                     </select>
                 </div>
                 <div class="form-check">
 
-                        <input className='form-check-input' type='radio' name='status' id='assistido' value='Assistido' onClick={seleciona(('Assistido'))}/>
+                        <input className='form-check-input' type='radio' name='status' id='assistido' value='Assistido' onChange={seleciona(('Assistido'))} checked={form.status === 'Assistido'}/>
                         <label className='form-check-label' htmlFor='assistido'>
                             Assistido
                         </label>
@@ -157,12 +163,13 @@ function InfoSerie({match}) {
                </div>
                 <div className='form-check'>
 
-                    <input className='form-check-input' type='radio' name='status' id='paraAssistir'  value='Para assistir' onClick={seleciona('Para assistir')}/>
+                    <input className='form-check-input' type='radio' name='status' id='paraAssistir'  value='Para assistir' onChange={seleciona('Para assistir')} checked={form.status === 'Para assistir'}/>
                     <label className='form-check-label' htmlFor='paraAssistir'>
                         Para assistir
                     </label>
 
                 </div>
+
                 <Button type='button'  onClick={save} className='btn btn-primary' nome ='Salvar' />
                 </form>
 
