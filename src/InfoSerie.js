@@ -87,6 +87,7 @@ function InfoSerie({match}) {
 
      if(sucess){
        return  <Redirect to='/series'/>
+       
      }
 
     
